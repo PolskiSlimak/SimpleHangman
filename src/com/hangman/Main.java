@@ -8,6 +8,7 @@ public class Main {
         while(true) {
             Game game = new Game();
             game.startGame();
+            System.out.println("----------------------------------------------------------------------------------");
         }
     }
 }
