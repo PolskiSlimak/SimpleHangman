@@ -4,9 +4,13 @@ import java.util.Scanner;
 
 public class Game {
     private String[] words = {"terminator", "banana", "computer", "cow", "rain", "water" };
-    private String word = words[(int) (Math.random() * words.length)];
-    StringBuilder sb = new StringBuilder(new String(new char[word.length()]).replace("\0", "_"));
+    private StringBuilder word = new StringBuilder(words[(int) (Math.random() * words.length)]);
+    private StringBuilder sb = new StringBuilder(new String(new char[word.length()]).replace("\0", "_"));
     private  int count = 0;
+
+    Game() {
+        sb.setCharAt(0, word.charAt(0));
+    }
 
     public void startGame() {
         Scanner sc = new Scanner(System.in);
@@ -24,13 +28,15 @@ public class Game {
             System.out.println("Too many wrong answers, The word was: " + word);
     }
     private boolean checkWord(String guess) {
-        if (guess.equals(word)) {
+        if (guess.equals(word.toString())) {
             System.out.println("Correct! You win! The word was: " + word);
             return true;
         }
         System.out.println("Wrong answer");
         count++;
-        printOneLetter();
+        if (word.length() > 4) {
+            printOneLetter();
+        }
         return false;
     }
     private void printOneLetter() {
